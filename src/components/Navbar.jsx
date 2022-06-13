@@ -1,18 +1,22 @@
+import { Link } from "react-router-dom";
+
 export default function Navbar() {
   return (
     <nav
-      class="navbar is-link p-2"
+      className="navbar is-link p-2"
       role="navigation"
       aria-label="main navigation"
     >
-      <div class="navbar-brand">
-        <a class="navbar-item" href="#">
+      <div className="navbar-brand">
+        <Link to={"/"} className="navbar-item" href="#">
           <h2>MERN app</h2>
-        </a>
+        </Link>
       </div>
 
-      <div class="navbar-menu navbar-end">
-        <a className="navbar-item">Articles</a>
+      <div className="navbar-menu navbar-end">
+        <Link className="navbar-item" to={"/articles"}>
+          Blog
+        </Link>
       </div>
     </nav>
   );

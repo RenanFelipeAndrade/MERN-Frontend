@@ -1,18 +1,13 @@
-import Navbar from "./components/Navbar";
-import TechGrid from "./components/TechGrid";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Articles from "./components/Articles";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <div className="container">
-        <h3 className="title has-text-centered mt-4">
-          A simple app using MongoDb, ReactJs, ExpressJs and Node, a.k.a MERN
-          stack
-        </h3>
-        <TechGrid />
-      </div>
-    </>
+    <Routes>
+      <Route path="" element={<Home />} />
+      <Route path="/articles" element={<Articles />} />
+    </Routes>
   );
 }
 
