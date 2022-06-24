@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ArticleForm() {
+export default function ArticleForm({ setResponse }) {
   const [formState, setFormState] = useState({
     title: "",
     text: "",
@@ -19,9 +19,20 @@ export default function ArticleForm() {
       },
       method: "POST",
       body: JSON.stringify(formState),
-    });
+    }).catch((error) =>
+      setResponse({
+        status: "error",
+        message: error,
+        error: true,
+      })
+    );
+
     const response = await rawResponse.text();
-    if (rawResponse.status === 201) console.log(response);
+    setResponse({
+      status: rawResponse.status,
+      message: response,
+      error: false,
+    });
   };
 
   return (
