@@ -8,8 +8,9 @@ export default function Notification({ children, show, variant }) {
             justifyContent: "center",
             position: "fixed",
             top: 10,
+            left: 0,
+            right: 0,
             zIndex: 40,
-            width: "100%",
           }}
         >
           <div
