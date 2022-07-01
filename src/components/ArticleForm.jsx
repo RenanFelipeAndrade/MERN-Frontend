@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ArticleForm({ setResponse }) {
+export default function ArticleForm({ setResponse, setIsVisible }) {
   const [formState, setFormState] = useState({
     title: "",
     text: "",
@@ -21,7 +21,7 @@ export default function ArticleForm({ setResponse }) {
       body: JSON.stringify(formState),
     }).catch((error) =>
       setResponse({
-        status: "error",
+        status: rawResponse.status,
         message: error,
         error: true,
       })
@@ -64,7 +64,12 @@ export default function ArticleForm({ setResponse }) {
           <button className="button is-primary">Create</button>
         </div>
         <div className="control">
-          <button className="button is-secondary">Cancel</button>
+          <button
+            onClick={() => setIsVisible(false)}
+            className="button is-secondary"
+          >
+            Cancel
+          </button>
         </div>
       </section>
     </form>
