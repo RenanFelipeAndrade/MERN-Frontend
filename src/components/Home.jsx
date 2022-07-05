@@ -1,7 +1,7 @@
-import Navbar from "./Navbar";
-import TechGrid from "./TechGrid";
+import { Navbar } from "./Navbar";
+import { TechGrid } from "./TechGrid";
 
-export default function Home() {
+export const Home = () => {
   return (
     <>
       <Navbar />
@@ -14,4 +14,4 @@ export default function Home() {
       </div>
     </>
   );
-}
+};

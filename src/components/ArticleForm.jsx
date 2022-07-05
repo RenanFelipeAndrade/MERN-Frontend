@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ArticleForm({ setResponse, setIsVisible }) {
+export const ArticleForm = ({ setResponse, setIsVisible }) => {
   const url = import.meta.env.VITE_API_URL;
 
   const [formState, setFormState] = useState({
@@ -77,4 +77,4 @@ export default function ArticleForm({ setResponse, setIsVisible }) {
       </section>
     </form>
   );
-}
+};

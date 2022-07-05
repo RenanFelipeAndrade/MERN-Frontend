@@ -1,4 +1,4 @@
-export default function Notification({ children, show, variant }) {
+export const Notification = ({ children, show, variant }) => {
   return (
     <>
       {show && (
@@ -25,4 +25,4 @@ export default function Notification({ children, show, variant }) {
       )}
     </>
   );
-}
+};

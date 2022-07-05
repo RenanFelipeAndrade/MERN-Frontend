@@ -1,4 +1,4 @@
-export default function Modal({ children, isVisible, setIsVisible, ...props }) {
+export const Modal = ({ children, isVisible, setIsVisible }) => {
   return (
     <>
       {isVisible && (
@@ -14,4 +14,4 @@ export default function Modal({ children, isVisible, setIsVisible, ...props }) {
       )}
     </>
   );
-}
+};

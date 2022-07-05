@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import Card from "./Card/Card";
-import Navbar from "./Navbar";
-import Modal from "./Modal";
-import ArticleForm from "./ArticleForm";
-import Notification from "./Notification";
+import { Card } from "./Card/Card";
+import { Navbar } from "./Navbar";
+import { Modal } from "./Modal";
+import { ArticleForm } from "./ArticleForm";
+import { Notification } from "./Notification";
 
-export default function Articles() {
+export const Articles = () => {
   const url = import.meta.env.VITE_API_URL;
 
   const [isVisible, setIsVisible] = useState(false);
@@ -92,4 +92,4 @@ export default function Articles() {
       </Modal>
     </>
   );
-}
+};

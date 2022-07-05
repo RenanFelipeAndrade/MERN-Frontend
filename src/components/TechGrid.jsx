@@ -1,5 +1,5 @@
-import Card from "./Card/Card";
-export default function TechGrid() {
+import { Card } from "./Card/Card";
+export const TechGrid = () => {
   return (
     <div>
       <section className="columns">
@@ -49,4 +49,4 @@ export default function TechGrid() {
       </section>
     </div>
   );
-}
+};

@@ -1,7 +1,7 @@
 import { EditArticle } from "./EditArticle";
 import { ListItem } from "./ListItem";
 
-export default function Card({
+export const Card = ({
   title,
   children,
   style,
@@ -10,7 +10,7 @@ export default function Card({
   setEditing,
   setResponse,
   ...props
-}) {
+}) => {
   return (
     <div className="card p-4">
       {props.editing ? (
@@ -33,4 +33,4 @@ export default function Card({
       )}
     </div>
   );
-}
+};
