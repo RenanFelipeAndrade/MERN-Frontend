@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import Card from "./Card";
+import Card from "./Card/Card";
 import Navbar from "./Navbar";
 import Modal from "./Modal";
 import ArticleForm from "./ArticleForm";
 import Notification from "./Notification";
 
 export default function Articles() {
+  const url = import.meta.env.VITE_API_URL;
+
   const [isVisible, setIsVisible] = useState(false);
-  // const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState({});
   const [response, setResponse] = useState({});
@@ -18,7 +19,7 @@ export default function Articles() {
   // fetch all data when response changes
   useEffect(() => {
     async function fetchArticles() {
-      await fetch("http://192.168.0.101:3000/articles").then((response) =>
+      await fetch(`${url}/articles`).then((response) =>
         response.json().then((data) => setArticles(data))
       );
     }
@@ -28,7 +29,7 @@ export default function Articles() {
 
   // show notification when response changes
   useEffect(() => {
-    if (response.error) setShow(true);
+    if (response.error === false || response.error === true) setShow(true);
     setIsVisible(false);
     setTimeout(() => setShow(false), 3000);
   }, [response]);
@@ -39,17 +40,17 @@ export default function Articles() {
       <div className="container">
         <h2 className="title mt-4 px-4">Articles</h2>
         {editing ? (
+          // if editing
           <Card
             article={article}
             setEditing={setEditing}
             setResponse={setResponse}
             editing
-            deleteIcon
           />
         ) : (
           articles.map((article, index) => (
+            // if listing all articles
             <Card
-              title={article.title}
               key={index}
               article={article}
               setArticle={setArticle}

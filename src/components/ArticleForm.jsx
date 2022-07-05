@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 export default function ArticleForm({ setResponse, setIsVisible }) {
+  const url = import.meta.env.VITE_API_URL;
+
   const [formState, setFormState] = useState({
     title: "",
     text: "",
@@ -12,27 +14,28 @@ export default function ArticleForm({ setResponse, setIsVisible }) {
   };
 
   const handleSubmit = async () => {
-    const rawResponse = await fetch("http://localhost:3000/articles", {
+    await fetch(`${url}/articles`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(formState),
-    }).catch((error) =>
-      setResponse({
-        status: rawResponse.status,
-        message: error,
-        error: true,
-      })
-    );
-
-    const response = await rawResponse.text();
-    setResponse({
-      status: rawResponse.status,
-      message: response,
-      error: false,
-    });
+    })
+      .then(async (response) =>
+        setResponse({
+          message: await response.text(),
+          error: false,
+          status: response.status,
+        })
+      )
+      .catch((error) =>
+        setResponse({
+          status: error,
+          message: error,
+          error: true,
+        })
+      );
   };
 
   return (
