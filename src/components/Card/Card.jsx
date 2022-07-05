@@ -22,6 +22,7 @@ export default function Card({
       ) : (
         <ListItem
           article={article}
+          title={title}
           setResponse={setResponse}
           setEditing={setEditing}
           setArticle={setArticle}

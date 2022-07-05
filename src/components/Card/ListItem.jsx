@@ -49,7 +49,7 @@ export const ListItem = ({
         }}
       >
         {/* if not editing  */}
-        <h2 className="title is-4 mb-4">{article.title}</h2>
+        <h2 className="title is-4 mb-4">{title || article.title}</h2>
         <span className="buttons are-small" style={{ flexWrap: "nowrap" }}>
           {props.deleteIcon && (
             <button
