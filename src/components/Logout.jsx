@@ -1,23 +1,25 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useGoogleLogout } from "react-google-login";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import { Navbar } from "./Navbar";
 import { Notification } from "./Notification";
 
 export const Logout = ({ clientId, ...props }) => {
+  const { setUserData } = useContext(AuthContext);
   const [response, setResponse] = useState({});
   const navigate = useNavigate();
 
-  const onLogoutSuccess = (res) => {
-    console.log("s", res);
+  const onLogoutSuccess = () => {
     localStorage.removeItem("userData");
+    setUserData({});
     setResponse({ success: true, isVisible: true });
     hideNotification();
   };
 
   const onFailure = (error) => {
-    console.log("f", error);
+    console.log("Error", error);
     setResponse({ ...error, success: false, isVisible: true });
     hideNotification();
   };

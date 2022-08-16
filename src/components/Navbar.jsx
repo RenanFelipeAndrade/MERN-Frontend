@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export const Navbar = () => {
   const [burgerIsActive, setBurgerIsActive] = useState(false);
+  const { userData } = useContext(AuthContext);
+
   return (
     <nav
       className="navbar is-link p-2"
@@ -34,15 +38,21 @@ export const Navbar = () => {
         className={`navbar-menu ${burgerIsActive && "is-active"}`}
       >
         <div className="navbar-end">
-          <Link className="navbar-item" to={"/articles"}>
-            Blog
-          </Link>
-          <Link className="navbar-item" to={"/login"}>
-            Login
-          </Link>
-          <Link className="navbar-item" to={"/logout"}>
-            Logout
-          </Link>
+          {userData.googleId ? (
+            <>
+              <Link className="navbar-item" to={"/articles"}>
+                Blog
+              </Link>
+
+              <Link className="navbar-item" to={"/logout"}>
+                Logout
+              </Link>
+            </>
+          ) : (
+            <Link className="navbar-item" to={"/login"}>
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
