@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useContext, useState } from "react";
 
 export const ArticleForm = ({ setResponse, setIsVisible }) => {
   const url = import.meta.env.VITE_API_URL;
+  const { userData } = useContext(AuthContext);
 
   const [formState, setFormState] = useState({
     title: "",
@@ -9,7 +11,7 @@ export const ArticleForm = ({ setResponse, setIsVisible }) => {
   });
 
   const handleChange = (event) => {
-    // destructure the formState object and add a new key value pair
+    // spread the formState object and add a new key value pair
     setFormState({ ...formState, [event.target.name]: event.target.value });
   };
 
@@ -20,7 +22,7 @@ export const ArticleForm = ({ setResponse, setIsVisible }) => {
         "Content-Type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify(formState),
+      body: JSON.stringify({ ...formState, author: userData }),
     })
       .then(async (response) =>
         setResponse({
@@ -47,7 +49,7 @@ export const ArticleForm = ({ setResponse, setIsVisible }) => {
             className="input"
             name="title"
             onChange={handleChange}
-            placeholder="Digite o artigo"
+            placeholder="Type the title"
           />
         </div>
       </section>
@@ -58,7 +60,7 @@ export const ArticleForm = ({ setResponse, setIsVisible }) => {
             className="textarea"
             name="text"
             onChange={handleChange}
-            placeholder="Digite o artigo"
+            placeholder="Type the content"
           />
         </div>
       </section>

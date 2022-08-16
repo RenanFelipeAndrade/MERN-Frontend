@@ -1,9 +1,9 @@
 import trashIcon from "../../svg/delete-white.svg";
 import editIcon from "../../svg/white-pencil-edit.svg";
+import { formatDate } from "../../utils/formatDate";
 
 export const ListItem = ({
   children,
-  style,
   title,
   article,
   setArticle,
@@ -40,17 +40,20 @@ export const ListItem = ({
   return (
     <>
       <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "start",
-          justifyContent: "space-between",
-          ...style,
-        }}
+        className={`is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center ${props.className}`}
       >
-        {/* if not editing  */}
-        <h2 className="title is-4 mb-4">{title || article.title}</h2>
-        <span className="buttons are-small" style={{ flexWrap: "nowrap" }}>
+        <div className="mb-4">
+          <h2 className="title is-3">{title || article.title}</h2>
+          <div className="is-flex is-flex-direction-column is-justify-content-space-between">
+            <span className="mb-2">
+              Created at: {formatDate(article.createdAt)}
+            </span>
+            <h3 className="subtitle is-6">Author: {article.author}</h3>
+          </div>
+        </div>
+
+        {/* edit and delete icons, if those exist */}
+        <span className="buttons are-small is-justify-content-flex-end">
           {props.deleteIcon && (
             <button
               className="button is-danger"
@@ -68,7 +71,7 @@ export const ListItem = ({
           )}
           {props.editIcon && (
             <button
-              className="button is-primary"
+              className="button is-primary mr-2"
               onClick={() => {
                 editArticle(article);
               }}

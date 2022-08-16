@@ -38,7 +38,7 @@ export const Articles = () => {
     <>
       <Navbar />
       <div className="container">
-        <h2 className="title mt-4 px-4">Articles</h2>
+        <h2 className="title is-2 mt-4 px-4">Articles</h2>
         {editing ? (
           // if editing
           <Card
@@ -59,7 +59,7 @@ export const Articles = () => {
               deleteIcon
               editIcon
             >
-              <p className="content" style={{ wordBreak: "break-all" }}>
+              <p className="card-content" style={{ wordBreak: "break-all" }}>
                 {article.text}
               </p>
             </Card>
