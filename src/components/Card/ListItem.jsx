@@ -1,5 +1,6 @@
 import trashIcon from "../../svg/delete-white.svg";
 import editIcon from "../../svg/white-pencil-edit.svg";
+import { formatAuthorName } from "../../utils/formatAuthorName";
 import { formatDate } from "../../utils/formatDate";
 
 export const ListItem = ({
@@ -48,7 +49,9 @@ export const ListItem = ({
             <span className="mb-2">
               Created at: {formatDate(article.createdAt)}
             </span>
-            <h3 className="subtitle is-6">Author: {article.author}</h3>
+            <h3 className="subtitle is-6">
+              Author: {formatAuthorName(article.author)}
+            </h3>
           </div>
         </div>
 
