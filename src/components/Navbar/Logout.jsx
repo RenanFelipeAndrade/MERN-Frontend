@@ -2,9 +2,9 @@ import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useGoogleLogout } from "react-google-login";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { Navbar } from "./Navbar";
-import { Notification } from "./Notification";
+import { Notification } from "../Notification";
 
 export const Logout = ({ clientId, ...props }) => {
   const { setUserData } = useContext(AuthContext);

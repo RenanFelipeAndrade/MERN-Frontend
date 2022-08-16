@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Card } from "./Card/Card";
-import { Navbar } from "./Navbar";
+import { Navbar } from "./Navbar/Navbar";
 import { Modal } from "./Modal";
 import { ArticleForm } from "./ArticleForm";
 import { Notification } from "./Notification";

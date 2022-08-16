@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./components/Home";
+import { Home } from "./components/Home/Home";
 import { Articles } from "./components/Articles";
-import { Login } from "./components/Login";
-import { Logout } from "./components/Logout";
+import { Login } from "./components/Navbar/Login";
+import { Logout } from "./components/Navbar/Logout";
 import { useEffect } from "react";
 import { gapi } from "gapi-script";
 
