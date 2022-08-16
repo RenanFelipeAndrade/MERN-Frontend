@@ -12,7 +12,7 @@ export const Card = ({
   ...props
 }) => {
   return (
-    <div className="card p-4">
+    <div className={`card p-4 ${props.className}`}>
       {props.editing ? (
         <EditArticle
           article={article}
