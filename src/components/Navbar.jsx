@@ -37,6 +37,12 @@ export const Navbar = () => {
           <Link className="navbar-item" to={"/articles"}>
             Blog
           </Link>
+          <Link className="navbar-item" to={"/login"}>
+            Login
+          </Link>
+          <Link className="navbar-item" to={"/logout"}>
+            Logout
+          </Link>
         </div>
       </div>
     </nav>
