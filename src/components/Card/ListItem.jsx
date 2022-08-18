@@ -39,37 +39,41 @@ export const ListItem = ({
           status: error,
         })
       );
+    setTimeout(() => {
+      setResponse({});
+    }, 3000);
   };
   return (
     <>
       <div
-        className={`is-flex is-flex-direction-row is-justify-content-space-between ${props.className}`}
+        className={`is-flex is-flex-direction-row is-justify-content-space-between`}
       >
-        <div className="mb-4">
-          {article ? (
-            <>
-              <h2 className="title is-3">{article.title}</h2>
-              <div className="is-flex is-flex-direction-column is-justify-content-space-between">
-                <span className="mb-2 content">
-                  Created at: {formatDate(article.createdAt)}
-                </span>
-                <h3 className="subtitle is-6">
-                  Author: {formatAuthorName(article.author.name, userData)}
-                </h3>
-              </div>
-            </>
-          ) : (
-            <h2 className="title is-3">{title}</h2>
-          )}
-        </div>
+        {article ? (
+          <div>
+            <h2 className="title is-3">{article.title}</h2>
+            <div className="is-flex is-flex-direction-column is-justify-content-space-between">
+              <span className="mb-2 content">
+                Created at: {formatDate(article.createdAt)}
+              </span>
+              <h3 className="subtitle is-6">
+                Author: {formatAuthorName(article.author.name, userData)}
+              </h3>
+            </div>
+          </div>
+        ) : (
+          <h2 className="title is-3 mb-3">{title}</h2>
+        )}
 
         {/* edit or delete icons, if those exist and the user is the author */}
         {article?.author.googleId === userData.googleId &&
         (props.editIcon || props.deleteIcon) ? (
-          <span className="buttons are-small is-justify-content-flex-end">
+          <span
+            className="buttons are-small is-justify-content-flex-end"
+            style={{ gap: "0.25rem" }}
+          >
             {props.deleteIcon && (
               <button
-                className="button is-danger"
+                className="button is-danger m-0"
                 onClick={() => {
                   deleteArticle(article._id);
                 }}
@@ -84,7 +88,7 @@ export const ListItem = ({
             )}
             {props.editIcon && (
               <button
-                className="button is-primary mr-2"
+                className="button is-primary m-0"
                 onClick={() => {
                   editArticle(article);
                 }}

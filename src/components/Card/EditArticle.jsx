@@ -30,6 +30,9 @@ export const EditArticle = ({ article, setEditing, setResponse, style }) => {
         });
         setEditing(false);
       });
+    setTimeout(() => {
+      setResponse({});
+    }, 3000);
   };
 
   const handleChange = (event) => {
