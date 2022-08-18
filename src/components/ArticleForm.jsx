@@ -1,9 +1,9 @@
-import { AuthContext } from "../context/AuthContext";
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
 export const ArticleForm = ({ setResponse, setIsVisible }) => {
   const url = import.meta.env.VITE_API_URL;
-  const { userData } = useContext(AuthContext);
+  const { userData } = useAuth();
 
   const [formState, setFormState] = useState({
     title: "",

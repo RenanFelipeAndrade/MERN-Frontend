@@ -1,15 +1,14 @@
-import { useContext } from "react";
 import { useState } from "react";
 import GoogleLogin from "react-google-login";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import { refreshTokenSetup } from "../../utils/refreshTokenSetup";
 import { Card } from "../Card/Card";
 import { Navbar } from "./Navbar";
 import { Notification } from "../Notification";
+import { useAuth } from "../../context/AuthContext";
 
 export const Login = (props) => {
-  const { userData, setUserData } = useContext(AuthContext);
+  const { userData, setUserData } = useAuth();
   const [response, setResponse] = useState({});
   const navigate = useNavigate();
 

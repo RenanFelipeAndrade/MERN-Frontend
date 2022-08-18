@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 export const Navbar = () => {
   const [burgerIsActive, setBurgerIsActive] = useState(false);
-  const { userData } = useContext(AuthContext);
+  const { userData } = useAuth();
 
   return (
     <nav
