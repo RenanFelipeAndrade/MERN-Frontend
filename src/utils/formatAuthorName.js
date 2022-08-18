@@ -1,4 +1,6 @@
-export const formatAuthorName = (name) => {
+export const formatAuthorName = (name, currentUser) => {
+  if (name === currentUser.name) return "You";
+
   const nameParts = name.split(" ");
   if (nameParts.length <= 2) return name;
 
