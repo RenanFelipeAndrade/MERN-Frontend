@@ -40,7 +40,7 @@ export const Login = (props) => {
     <>
       <Navbar />
       <div className="container is-max-desktop is-flex is-justify-content-center">
-        <Card title={"Login"} className="mt-6 p-5">
+        <Card title={"Login"} className="p-4 mt-5">
           <GoogleLogin
             clientId={props.clientId}
             onSuccess={onSuccess}
