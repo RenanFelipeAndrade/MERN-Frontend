@@ -5,6 +5,7 @@ import { Login } from "./components/Navbar/Login";
 import { Logout } from "./components/Navbar/Logout";
 import { useEffect } from "react";
 import { gapi } from "gapi-script";
+import { RequireAuth } from "./components/RequireAuth";
 
 export const App = () => {
   const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -24,9 +25,16 @@ export const App = () => {
   return (
     <Routes>
       <Route path="" element={<Home />} />
-      <Route path="/articles" element={<Articles />} />
-      <Route path="/login" element={<Login clientId={clientId} />} />
+      <Route
+        path="/articles"
+        element={
+          <RequireAuth>
+            <Articles />
+          </RequireAuth>
+        }
+      />
       <Route path="/logout" element={<Logout clientId={clientId} />} />
+      <Route path="/login" element={<Login clientId={clientId} />} />
     </Routes>
   );
 };
