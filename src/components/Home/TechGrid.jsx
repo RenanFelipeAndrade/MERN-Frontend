@@ -1,8 +1,8 @@
 import { Card } from "../Card/Card";
 export const TechGrid = () => {
   return (
-    <div>
-      <section className="columns">
+    <>
+      <section className="columns m-0">
         <div className="column">
           <Card title={"MongoDb"}>
             <p className="card-content">
@@ -24,7 +24,8 @@ export const TechGrid = () => {
           </Card>
         </div>
       </section>
-      <section className="columns">
+
+      <section className="columns m-0">
         <div className="column">
           <Card title={"ReactJs"}>
             <p className="card-content">
@@ -47,6 +48,6 @@ export const TechGrid = () => {
           </Card>
         </div>
       </section>
-    </div>
+    </>
   );
 };
