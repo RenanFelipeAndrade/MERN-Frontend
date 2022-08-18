@@ -39,32 +39,40 @@ export const Articles = () => {
       <Navbar />
       <div className="container">
         <h2 className="title is-2 mt-4 px-4">Articles</h2>
-        {editing ? (
-          // if editing
-          <Card
-            article={article}
-            setEditing={setEditing}
-            setResponse={setResponse}
-            editing
-          />
-        ) : (
-          articles.map((article, index) => (
-            // if listing all articles
+        <section className="columns my-2 mx-0">
+          {editing ? (
+            // if editing
             <Card
-              key={index}
               article={article}
-              setArticle={setArticle}
-              setResponse={setResponse}
               setEditing={setEditing}
-              deleteIcon
-              editIcon
-            >
-              <p className="card-content" style={{ wordBreak: "break-all" }}>
-                {article.text}
-              </p>
-            </Card>
-          ))
-        )}
+              setResponse={setResponse}
+              editing
+            />
+          ) : (
+            articles.map((article, index) => (
+              // if listing all articles
+              <Card
+                key={index}
+                className="column"
+                article={article}
+                setArticle={setArticle}
+                setResponse={setResponse}
+                setEditing={setEditing}
+                deleteIcon
+                editIcon
+              >
+                <p
+                  className="card-content has-text-justified is-clipped"
+                  style={{
+                    maxHeight: "10rem",
+                  }}
+                >
+                  {article.text}
+                </p>
+              </Card>
+            ))
+          )}
+        </section>
       </div>
 
       {!editing && (
@@ -77,7 +85,7 @@ export const Articles = () => {
         </button>
       )}
 
-      {response.error ? (
+      {show && response.error ? (
         <Notification show={show} variant={"is-danger"}>
           An error has occured: {response.message}
         </Notification>
