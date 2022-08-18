@@ -1,3 +1,4 @@
+import { useAuth } from "../../context/AuthContext";
 import trashIcon from "../../svg/delete-white.svg";
 import editIcon from "../../svg/white-pencil-edit.svg";
 import { formatAuthorName } from "../../utils/formatAuthorName";
@@ -13,6 +14,7 @@ export const ListItem = ({
   ...props
 }) => {
   const url = import.meta.env.VITE_API_URL;
+  const { userData } = useAuth();
 
   const editArticle = (article) => {
     setArticle(article);
@@ -41,18 +43,18 @@ export const ListItem = ({
   return (
     <>
       <div
-        className={`is-flex is-flex-direction-row is-justify-content-space-between`}
+        className={`is-flex is-flex-direction-row is-justify-content-space-between ${props.className}`}
       >
         <div className="mb-4">
           {article ? (
             <>
               <h2 className="title is-3">{article.title}</h2>
               <div className="is-flex is-flex-direction-column is-justify-content-space-between">
-                <span className="mb-2">
+                <span className="mb-2 content">
                   Created at: {formatDate(article.createdAt)}
                 </span>
                 <h3 className="subtitle is-6">
-                  Author: {formatAuthorName(article.author)}
+                  Author: {formatAuthorName(article.author.name, userData)}
                 </h3>
               </div>
             </>
@@ -61,8 +63,9 @@ export const ListItem = ({
           )}
         </div>
 
-        {/* edit or delete icons, if those exist */}
-        {props.deleteIcon || props.editIcon ? (
+        {/* edit or delete icons, if those exist and the user is the author */}
+        {article?.author.googleId === userData.googleId &&
+        (props.editIcon || props.deleteIcon) ? (
           <span className="buttons are-small is-justify-content-flex-end">
             {props.deleteIcon && (
               <button
