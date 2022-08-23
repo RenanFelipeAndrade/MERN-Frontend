@@ -9,12 +9,12 @@ afterEach(() => {
 
 describe("A notification test", () => {
   it("Renders the notification component", () => {
-    const component = render(
+    const { container } = render(
       <Notification show={true} variant={"is-primary"}>
         A notification!
       </Notification>
     );
-    expect(component).toBeInTheDocument();
+    expect(container).toBeInTheDocument();
   });
 
   it("Checks if child container is a span", () => {
