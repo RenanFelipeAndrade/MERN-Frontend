@@ -9,10 +9,11 @@ export const Card = ({
   setArticle,
   setEditing,
   setResponse,
+  setReading,
   ...props
 }) => {
   return (
-    <div className={`card p-4 ${props.className} `}>
+    <div className={`card p-4 ${props.className} mx-auto`}>
       {props.editing ? (
         <EditArticle
           article={article}
@@ -26,6 +27,7 @@ export const Card = ({
           setResponse={setResponse}
           setEditing={setEditing}
           setArticle={setArticle}
+          setReading={setReading}
           {...props}
         >
           {children}

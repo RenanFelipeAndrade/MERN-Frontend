@@ -5,6 +5,7 @@ import { Navbar } from "./Navbar/Navbar";
 import { Modal } from "./Modal";
 import { ArticleForm } from "./ArticleForm";
 import { Notification } from "./Notification";
+import { ViewArticle } from "./Card/ViewArticle";
 
 export const Articles = () => {
   const url = import.meta.env.VITE_API_URL;
@@ -15,6 +16,7 @@ export const Articles = () => {
   const [response, setResponse] = useState({});
   const [show, setShow] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [reading, setReading] = useState(false);
 
   // fetch all data when response changes
   useEffect(() => {
@@ -37,52 +39,67 @@ export const Articles = () => {
   return (
     <>
       <Navbar />
-      <div className="container">
-        <h2 className="title is-2 mt-4 px-4">Articles</h2>
-        <section className="columns my-2 mx-0">
-          {editing ? (
-            // if editing
-            <Card
-              article={article}
-              setEditing={setEditing}
-              setResponse={setResponse}
-              editing
-            />
-          ) : (
-            articles.map((article, index) => (
-              // if listing all articles
+      {reading ? (
+        <ViewArticle article={article} setReading={setReading} />
+      ) : (
+        <div className="container">
+          <h2 className="title is-2 mt-4 px-4">Articles</h2>
+          <section className="columns my-2 mx-0">
+            {editing ? (
+              // if editing
               <Card
-                key={index}
-                className="column"
                 article={article}
-                setArticle={setArticle}
-                setResponse={setResponse}
                 setEditing={setEditing}
-                deleteIcon
-                editIcon
-              >
-                <p
-                  className="card-content has-text-justified is-clipped"
-                  style={{
-                    maxHeight: "10rem",
-                  }}
+                setResponse={setResponse}
+                editing
+              />
+            ) : (
+              articles.map((article, index) => (
+                // if listing all articles
+                <Card
+                  key={index}
+                  className="column is-relative m-0"
+                  article={article}
+                  setArticle={setArticle}
+                  setResponse={setResponse}
+                  setEditing={setEditing}
+                  setReading={setReading}
+                  reading
+                  deleteIcon
+                  editIcon
                 >
-                  {article.text}
-                </p>
-              </Card>
-            ))
-          )}
-        </section>
-      </div>
-
-      {!editing && (
+                  <p
+                    className="card-content has-text-justified is-clipped"
+                    style={{
+                      maxHeight: "10rem",
+                    }}
+                  >
+                    {article.text}
+                  </p>
+                </Card>
+              ))
+            )}
+          </section>
+        </div>
+      )}
+      {reading ? (
         <button
-          onClick={() => setIsVisible(true)}
+          onClick={() => setReading(false)}
           style={{ position: "fixed", right: 20, bottom: 20 }}
-          className={"button is-link"}
+          className={"button is-primary"}
         >
-          Create
+          Return
         </button>
+      ) : (
+        !editing && (
+          <button
+            onClick={() => setIsVisible(true)}
+            style={{ position: "fixed", right: 20, bottom: 20 }}
+            className={"button is-link"}
+          >
+            Create
+          </button>
+        )
       )}
 
       {show && response.error ? (

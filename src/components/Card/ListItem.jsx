@@ -11,6 +11,7 @@ export const ListItem = ({
   setArticle,
   setEditing,
   setResponse,
+  setReading,
   ...props
 }) => {
   const url = import.meta.env.VITE_API_URL;
@@ -19,6 +20,11 @@ export const ListItem = ({
   const editArticle = (article) => {
     setArticle(article);
     setEditing(true);
+  };
+
+  const readArticle = (article) => {
+    setArticle(article);
+    setReading(true);
   };
 
   const deleteArticle = async (articleId) => {
@@ -50,7 +56,12 @@ export const ListItem = ({
       >
         {article ? (
           <div>
-            <h2 className="title is-3">{article.title}</h2>
+            <h2
+              className="title is-3 is-clickable has-text-link"
+              onClick={() => readArticle(article)}
+            >
+              {article.title}
+            </h2>
             <div className="is-flex is-flex-direction-column is-justify-content-space-between">
               <span className="mb-2 content">
                 Created at: {formatDate(article.createdAt)}
@@ -64,7 +75,7 @@ export const ListItem = ({
           <h2 className="title is-3 mb-3">{title}</h2>
         )}
 
-        {/* edit or delete icons, if those exist and the user is the author */}
+        {/* edit or delete icons if those exist, and the user is the author */}
         {article?.author.googleId === userData.googleId &&
         (props.editIcon || props.deleteIcon) ? (
           <span
