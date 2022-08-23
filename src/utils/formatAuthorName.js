@@ -1,13 +1,12 @@
 export const formatAuthorName = (name, currentUser) => {
   if (name === currentUser.name) return "You";
 
-  const nameParts = name.split(" ");
-  if (nameParts.length <= 2) return name;
+  const names = name.split(" ");
+  if (names.length <= 2) return name;
 
-  if (nameParts[nameParts.length - 2].length < 3) {
-    return `${nameParts[0]} ${nameParts[nameParts.length - 2]} ${
-      nameParts[nameParts.length - 1]
-    }`;
+  // if it has a preposition
+  if (names[names.length - 2].length < 3) {
+    return `${names[0]} ${names[names.length - 2]} ${names[names.length - 1]}`;
   }
-  return `${nameParts[0]} ${nameParts[nameParts.length - 1]}`;
+  return `${names[0]} ${names[names.length - 1]}`;
 };
