@@ -14,7 +14,7 @@ describe("A notification test", () => {
         A notification!
       </Notification>
     );
-    expect(container).toBeInTheDocument();
+    expect(container.firstChild).toBeInTheDocument();
   });
 
   it("Checks if child container is a span", () => {
