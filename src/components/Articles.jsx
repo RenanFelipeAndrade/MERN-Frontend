@@ -7,6 +7,7 @@ import { ArticleForm } from "./ArticleForm";
 import { Notification } from "./Notification";
 import { ViewArticle } from "./Card/ViewArticle";
 import { useAuth } from "../context/AuthContext";
+import { addParagraph } from "../utils/addParagraph";
 
 export const Articles = () => {
   const url = import.meta.env.VITE_API_URL;
@@ -48,7 +49,7 @@ export const Articles = () => {
       ) : (
         <div className="container">
           <h2 className="title is-2 mt-4 px-4">Articles</h2>
-          <section className="columns my-2 mx-0">
+          <section className="columns is-multiline my-2 mx-0">
             {editing ? (
               // if editing
               <Card
@@ -62,7 +63,7 @@ export const Articles = () => {
                 // if listing all articles
                 <Card
                   key={index}
-                  className="column is-relative m-0"
+                  className="column m-0"
                   article={article}
                   setArticle={setArticle}
                   setResponse={setResponse}
@@ -72,14 +73,15 @@ export const Articles = () => {
                   deleteIcon
                   editIcon
                 >
-                  <p
-                    className="card-content has-text-justified is-clipped"
+                  <div
+                    className="card-content content has-text-justified is-clipped is-relative"
                     style={{
                       maxHeight: "10rem",
+                      whiteSpace: "pre-line",
                     }}
                   >
-                    {article.text}
-                  </p>
+                    {addParagraph(article.text)}
+                  </div>
                 </Card>
               ))
             )}
