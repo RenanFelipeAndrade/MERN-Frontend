@@ -3,14 +3,15 @@ import { useContext, useEffect, createContext, useState } from "react";
 const AuthContext = createContext({});
 
 export const useAuth = () => {
-  const { userData, setUserData, loading, setLoading } =
+  const { userData, setUserData, loading, setLoading, accessToken } =
     useContext(AuthContext);
 
-  return { userData, setUserData, loading, setLoading };
+  return { userData, setUserData, loading, setLoading, accessToken };
 };
 
 export const AuthContextProvider = ({ children }) => {
   const localUserData = localStorage.getItem("userData");
+  const accessToken = localStorage.getItem("accessToken");
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +23,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ userData, setUserData, loading, setLoading }}
+      value={{ userData, setUserData, loading, setLoading, accessToken }}
     >
       {children}
     </AuthContext.Provider>
