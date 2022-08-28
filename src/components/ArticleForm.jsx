@@ -39,6 +39,7 @@ export const ArticleForm = ({ setResponse, setIsVisible }) => {
           error: true,
         })
       );
+    setTimeout(() => setResponse({}), 3000);
   };
 
   return (
