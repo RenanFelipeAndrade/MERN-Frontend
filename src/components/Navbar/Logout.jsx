@@ -13,6 +13,7 @@ export const Logout = ({ clientId, ...props }) => {
 
   const onLogoutSuccess = () => {
     localStorage.removeItem("userData");
+    localStorage.removeItem("accessToken");
     setUserData({});
     setResponse({ success: true, isVisible: true });
     hideNotification();

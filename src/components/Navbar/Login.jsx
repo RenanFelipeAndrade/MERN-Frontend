@@ -1,7 +1,6 @@
 import { useState } from "react";
 import GoogleLogin from "react-google-login";
 import { useNavigate } from "react-router-dom";
-import { refreshTokenSetup } from "../../utils/refreshTokenSetup";
 import { Card } from "../Card/Card";
 import { Navbar } from "./Navbar";
 import { Notification } from "../Notification";
@@ -15,9 +14,12 @@ export const Login = (props) => {
   const onSuccess = (res) => {
     const responseObj = res;
     localStorage.setItem("userData", JSON.stringify(responseObj.profileObj));
+    localStorage.setItem(
+      "accessToken",
+      JSON.stringify(responseObj.accessToken)
+    );
     setUserData(responseObj.profileObj);
     setResponse({ ...responseObj, success: true, isVisible: true });
-    refreshTokenSetup(responseObj);
     hideNotification();
   };
 
