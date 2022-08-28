@@ -15,7 +15,7 @@ export const ListItem = ({
   ...props
 }) => {
   const url = import.meta.env.VITE_API_URL;
-  const { userData } = useAuth();
+  const { userData, accessToken } = useAuth();
 
   const editArticle = (article) => {
     setArticle(article);
@@ -30,6 +30,7 @@ export const ListItem = ({
   const deleteArticle = async (articleId) => {
     await fetch(`${url}/articles/${articleId}`, {
       method: "DELETE",
+      Authorization: `Bearer ${accessToken}`,
     })
       .then(async (response) =>
         setResponse({

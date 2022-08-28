@@ -6,10 +6,12 @@ import { Modal } from "./Modal";
 import { ArticleForm } from "./ArticleForm";
 import { Notification } from "./Notification";
 import { ViewArticle } from "./Card/ViewArticle";
+import { useAuth } from "../context/AuthContext";
 
 export const Articles = () => {
   const url = import.meta.env.VITE_API_URL;
 
+  const { accessToken } = useAuth();
   const [isVisible, setIsVisible] = useState(false);
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState({});
@@ -21,9 +23,11 @@ export const Articles = () => {
   // fetch all data when response changes
   useEffect(() => {
     async function fetchArticles() {
-      await fetch(`${url}/articles`).then((response) =>
-        response.json().then((data) => setArticles(data))
-      );
+      await fetch(`${url}/articles`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }).then((response) => response.json().then((data) => setArticles(data)));
     }
     fetchArticles();
     return;

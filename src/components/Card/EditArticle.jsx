@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 export const EditArticle = ({ article, setEditing, setResponse, style }) => {
   const url = import.meta.env.VITE_API_URL;
 
   const [formState, setFormState] = useState(article);
+  const { accessToken } = useAuth();
 
   const updateArticle = async () => {
     await fetch(`${url}/articles/${article._id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
       method: "PATCH",
       body: JSON.stringify(formState),

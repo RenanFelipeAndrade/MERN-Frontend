@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 
 export const ArticleForm = ({ setResponse, setIsVisible }) => {
   const url = import.meta.env.VITE_API_URL;
-  const { userData } = useAuth();
+  const { userData, accessToken } = useAuth();
 
   const [formState, setFormState] = useState({
     title: "",
@@ -20,6 +20,7 @@ export const ArticleForm = ({ setResponse, setIsVisible }) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
       method: "POST",
       body: JSON.stringify({ ...formState, author: userData }),
