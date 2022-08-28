@@ -4,6 +4,15 @@ import { formatDate } from "../../utils/formatDate";
 
 export const ViewArticle = ({ article, setReading, ...props }) => {
   const { userData } = useAuth();
+  const addParagraphs = (text) => {
+    const paragraphs = text.split("\n");
+    const formatedText = paragraphs.map((paragraphs, index) => (
+      <p key={index} style={{ whiteSpace: "pre-line" }}>
+        {paragraphs}
+      </p>
+    ));
+    return formatedText;
+  };
   return (
     <>
       <div className="container">
@@ -18,8 +27,11 @@ export const ViewArticle = ({ article, setReading, ...props }) => {
             </span>
           </div>
         </div>
-        <section className="content px-4 mt-5 has-text-justified">
-          {article.text}
+        <section
+          className="content px-4 mt-5 has-text-justified"
+          style={{ whiteSpace: "pre-line" }}
+        >
+          {addParagraphs(article.text)}
         </section>
       </div>
     </>
