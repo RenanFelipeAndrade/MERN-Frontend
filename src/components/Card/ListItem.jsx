@@ -30,7 +30,9 @@ export const ListItem = ({
   const deleteArticle = async (articleId) => {
     await fetch(`${url}/articles/${articleId}`, {
       method: "DELETE",
-      Authorization: `Bearer ${accessToken}`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
     })
       .then(async (response) =>
         setResponse({
@@ -56,7 +58,7 @@ export const ListItem = ({
         className={`is-flex is-flex-direction-row is-justify-content-space-between`}
       >
         {article ? (
-          <div>
+          <div style={{ width: "max-content" }}>
             <h2
               className="title is-3 is-clickable has-text-link"
               onClick={() => readArticle(article)}
