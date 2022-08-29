@@ -13,7 +13,7 @@ export const Card = ({
   ...props
 }) => {
   return (
-    <div className={`card p-4 ${props.className} mx-auto`}>
+    <div className={`card p-4 ${props.className} mx-auto`} style={style}>
       {props.editing ? (
         <EditArticle
           article={article}
