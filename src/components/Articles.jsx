@@ -12,7 +12,7 @@ import { addParagraph } from "../utils/addParagraph";
 export const Articles = () => {
   const url = import.meta.env.VITE_API_URL;
 
-  const { accessToken } = useAuth();
+  const { accessToken, setLoading } = useAuth();
   const [isVisible, setIsVisible] = useState(false);
   const [articles, setArticles] = useState([]);
   const [article, setArticle] = useState({});
@@ -23,15 +23,17 @@ export const Articles = () => {
 
   // fetch all data when response changes
   useEffect(() => {
+    setLoading(true);
     async function fetchArticles() {
-      await fetch(`${url}/articles`, {
+      await fetch(`${url}articles`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       }).then((response) => response.json().then((data) => setArticles(data)));
     }
     fetchArticles();
-    return;
+    setLoading(false);
+    return () => setLoading(false);
   }, [response]);
 
   // show notification when response changes

@@ -28,7 +28,7 @@ export const ListItem = ({
   };
 
   const deleteArticle = async (articleId) => {
-    await fetch(`${url}/articles/${articleId}`, {
+    await fetch(`${url}articles/${articleId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${accessToken}`,

@@ -16,7 +16,7 @@ export const ArticleForm = ({ setResponse, setIsVisible }) => {
   };
 
   const handleSubmit = async () => {
-    await fetch(`${url}/articles`, {
+    await fetch(`${url}articles`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

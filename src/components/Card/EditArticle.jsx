@@ -8,7 +8,7 @@ export const EditArticle = ({ article, setEditing, setResponse, style }) => {
   const { accessToken } = useAuth();
 
   const updateArticle = async () => {
-    await fetch(`${url}/articles/${article._id}`, {
+    await fetch(`${url}articles/${article._id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
