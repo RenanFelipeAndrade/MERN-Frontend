@@ -1,1 +1,2 @@
-VITE_API_URL="A url"
+VITE_API_URL="https://example.com/api/"
+VITE_CLIENT_ID="a-clientId-example.apps.googleusercontent.com"
