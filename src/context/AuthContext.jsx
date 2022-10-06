@@ -5,7 +5,6 @@ const AuthContext = createContext({});
 
 export const useAuth = () => {
   const { userData, setUserData, accessToken } = useContext(AuthContext);
-
   return { userData, setUserData, accessToken };
 };
 

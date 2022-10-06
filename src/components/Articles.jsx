@@ -42,7 +42,6 @@ export const Articles = () => {
     return () => setLoading(false);
   }, [response]);
 
-  console.log(loading);
   // show notification when response changes
   useEffect(() => {
     if (response.error === false || response.error === true) setShow(true);
@@ -64,7 +63,11 @@ export const Articles = () => {
           ) : (
             <div className="container">
               <h2 className="title is-2 mt-4 px-4">Articles</h2>
-              <section className="columns is-multiline my-2 mx-0">
+              <section
+                className={`my-2 mx-0 ${
+                  article.length > 0 && "columns is-multiline"
+                }`}
+              >
                 {editing ? (
                   // if editing
                   <Card
@@ -73,7 +76,7 @@ export const Articles = () => {
                     setResponse={setResponse}
                     editing
                   />
-                ) : (
+                ) : articles.length > 0 ? (
                   articles.map((article, index) => (
                     // if listing all articles
                     <Card
@@ -99,6 +102,14 @@ export const Articles = () => {
                       </div>
                     </Card>
                   ))
+                ) : (
+                  <div>
+                    <div className="notification is-info has-text-centered is-flex is-justify-content-center">
+                      <span className="is-size-5">
+                        There are no articles created
+                      </span>
+                    </div>
+                  </div>
                 )}
               </section>
             </div>
