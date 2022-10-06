@@ -1,12 +1,12 @@
 import { useContext, useEffect, createContext, useState } from "react";
+import { LoadingScreen } from "../components/LoadingScreen";
 
 const AuthContext = createContext({});
 
 export const useAuth = () => {
-  const { userData, setUserData, loading, setLoading, accessToken } =
-    useContext(AuthContext);
+  const { userData, setUserData, accessToken } = useContext(AuthContext);
 
-  return { userData, setUserData, loading, setLoading, accessToken };
+  return { userData, setUserData, accessToken };
 };
 
 export const AuthContextProvider = ({ children }) => {
@@ -22,10 +22,14 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ userData, setUserData, loading, setLoading, accessToken }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <>
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <AuthContext.Provider value={{ userData, setUserData, accessToken }}>
+          {children}
+        </AuthContext.Provider>
+      )}
+    </>
   );
 };
