@@ -1,6 +1,6 @@
 # Simple Node App
 
-A simple blog project to learn the basics of the MERN stack. This is the frontend repo. [You can find the backend repo here](https://github.com/RenanFelipeAndrade/MERN-backend)
+A simple blog project to learn the basics of the MERN stack. This is the frontend repo. [You can find the backend repo here](https://github.com/RenanFelipeAndrade/MERN-backend). Also, [you can find this project hosted here](https://sna-mern-frontend.netlify.app/)
 
 ## Requirements
 
